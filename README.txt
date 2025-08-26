@@ -1,18 +1,32 @@
 
-DINAMITA POS (Fondo blanco • Completo) — 2025-08-26 17:30
+DINAMITA POS v2 (para navegador)
+=================================
 
-Módulos incluidos:
-- Dashboard (KPIs)
-- Ventas (carrito, IVA, pagos divididos, cliente opcional)
-- Inventario (CRUD, imagen, exportar CSV)
-- Clientes (CRUD)
-- Membresías (tipos, estados)
-- Cafetería (catálogo)
-- Historial de ventas (filtros, ticket, exportar CSV)
-- Configuración (IVA, mensaje, logo)
-- Ticket 58mm (impresión)
-- Respaldo/restore JSON desde la barra superior
+Fecha: 2025-08-26 19:50
 
-Diseño: Fondo blanco con detalles en negro y rojo, menú lateral desplegable (☰).
-Funciona 100% offline (localStorage). Abrir index.html en Chrome/Edge en tablet.
+Cómo usar:
+-----------
+1. Descomprime este archivo ZIP en tu computadora o tablet.
+2. Abre el archivo "index.html" con Google Chrome (o cualquier navegador moderno).
+3. Se abrirá la aplicación Dinamita POS directamente en tu navegador.
+4. Puedes añadirla a tu pantalla de inicio (en Chrome: Menú > Añadir a pantalla principal) para usarla como si fuera una app.
+5. Para respaldar tus datos, usa la opción "💾 Exportar respaldo" dentro del sistema. Esto generará un archivo JSON.
+6. Para restaurar, usa la opción "📥 Importar respaldo".
+
+Incluye módulos:
+----------------
+- 🛒 Ventas
+- 📦 Inventario (con costo, stock, exportar CSV)
+- 👤 Clientes (certificado médico, entrena solo, editar/borrar, exportar CSV)
+- 🎟️ Membresías (buscador/autocomplete)
+- ☕ Cafetería
+- 📜 Historial (modal de filtros + reimpresión de tickets, exportar CSV)
+- 🧾 Tickets 58mm listos para imprimir
+- ⚙️ Configuración (IVA, logo, mensaje de ticket)
+
+Notas:
+------
+- Los datos se guardan en el navegador automáticamente (localStorage).
+- Puedes exportar/respaldar tus datos para no perderlos si borras caché.
+- Recomendado usar siempre el mismo navegador/dispositivo para no perder información.
 
