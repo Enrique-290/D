@@ -1,32 +1,27 @@
 
-DINAMITA POS v2 (para navegador)
-=================================
+DINAMITA POS (PWA, blanco/rojo/negro) v2 — 2025-08-26 20:05
 
-Fecha: 2025-08-26 19:50
+Incluye:
+- 🛒 Ventas sin pagos divididos, notas en ticket.
+- 🧾 Ticket con formato 58mm, reimpresión por folio desde Historial.
+- 📦 Inventario: campo COSTO, CSV, badges de stock con emojis.
+- 📈 KPI: Ganancia de hoy.
+- 👤 Clientes: certificado médico / entrena solo; Editar/Borrar; Exportar CSV.
+- 🎟️ Membresías: buscador/autocomplete de clientes.
+- ☕ Cafetería con placeholder si no hay foto.
+- 📜 Historial: modal de filtros (fecha, folio, cliente, producto, pago) y reimpresión + CSV.
+- ⚙️ Configuración de IVA, logo y mensaje del ticket.
+- 💾 Respaldos (exportar/importar JSON) y migraciones.
 
-Cómo usar:
------------
-1. Descomprime este archivo ZIP en tu computadora o tablet.
-2. Abre el archivo "index.html" con Google Chrome (o cualquier navegador moderno).
-3. Se abrirá la aplicación Dinamita POS directamente en tu navegador.
-4. Puedes añadirla a tu pantalla de inicio (en Chrome: Menú > Añadir a pantalla principal) para usarla como si fuera una app.
-5. Para respaldar tus datos, usa la opción "💾 Exportar respaldo" dentro del sistema. Esto generará un archivo JSON.
-6. Para restaurar, usa la opción "📥 Importar respaldo".
+Cómo usar (navegador):
+1) Descomprime el ZIP.
+2) Abre index.html con Google Chrome (o navegador moderno). *El service worker sólo funciona en https/localhost; si abres el archivo en file:// la app funciona igual pero sin caché offline.*
+3) Ajusta IVA, logo y mensaje en ⚙️ Configuración.
+4) Usa 💾 Exportar respaldo para guardar tu JSON y 📥 Importar para restaurar.
+5) Para impresión 58mm, abre 🧾 Ticket y usa el botón 🖨️ (revisa márgenes de impresión).
 
-Incluye módulos:
-----------------
-- 🛒 Ventas
-- 📦 Inventario (con costo, stock, exportar CSV)
-- 👤 Clientes (certificado médico, entrena solo, editar/borrar, exportar CSV)
-- 🎟️ Membresías (buscador/autocomplete)
-- ☕ Cafetería
-- 📜 Historial (modal de filtros + reimpresión de tickets, exportar CSV)
-- 🧾 Tickets 58mm listos para imprimir
-- ⚙️ Configuración (IVA, logo, mensaje de ticket)
+Soporte de impresora:
+- Ticket está diseñado para 58mm; en Android/Chrome selecciona la impresora térmica.
+- Si tu impresora requiere app intermedia, imprime desde el diálogo del sistema.
 
-Notas:
-------
-- Los datos se guardan en el navegador automáticamente (localStorage).
-- Puedes exportar/respaldar tus datos para no perderlos si borras caché.
-- Recomendado usar siempre el mismo navegador/dispositivo para no perder información.
-
+¡Listo para pruebas en tu gym!
