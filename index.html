@@ -1,243 +1,50 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dinamita POS — Plus</title>
-  <link rel="stylesheet" href="styles.css"/>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Dinamita POS (Fondo Blanco)</title>
+<link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <aside id="sidebar" class="open">
+<div id="app">
+  <aside id="sidebar" class="sidebar">
     <div class="brand">
-      <div class="logo">💥</div>
-      <div class="brand-text">
-        <strong>DINAMITA POS</strong>
-        <small>Versión Plus (local)</small>
-      </div>
+      <h2>DINAMITA POS</h2>
+      <small>Explotamos tu potencial</small>
     </div>
-    <nav>
-      <button class="nav-link active" data-section="ventas">Ventas</button>
-      <button class="nav-link" data-section="catalogo">Catálogo</button>
-      <button class="nav-link" data-section="inventario">Inventario</button>
-      <button class="nav-link" data-section="historial">Historial</button>
-      <button class="nav-link" data-section="clientes">Clientes</button>
-      <button class="nav-link" data-section="membresias">Control</button>
-      <button class="nav-link" data-section="cafeteria">Cafetería</button>
-      <button class="nav-link" data-section="admin">Admin</button>
+    <nav class="menu">
+      <button data-view="dashboard" class="active">Dashboard</button>
+      <button data-view="ventas">Ventas</button>
+      <button data-view="inventario">Inventario</button>
+      <button data-view="clientes">Clientes</button>
+      <button data-view="membresias">Membresías</button>
+      <button data-view="cafeteria">Cafetería</button>
+      <button data-view="historial">Historial</button>
+      <button data-view="config">Configuración</button>
+      <button data-view="ticket">Ticket 58mm</button>
     </nav>
-    <footer>
-      <small>© Dinamita Gym</small>
-    </footer>
   </aside>
-
-  <main id="content">
-    <header>
-      <button id="menuToggle" title="Abrir/cerrar menú">☰</button>
-      <h1 id="sectionTitle">Ventas</h1>
+  <main id="main">
+    <header class="topbar">
+      <h1 id="viewTitle">Dashboard</h1>
     </header>
-
-    <!-- Ventas -->
-    <section id="ventas" class="section visible">
-      <div class="grid two">
-        <div class="card">
-          <h2>Crear venta</h2>
-          <div class="field">
-            <label>Producto</label>
-            <select id="ventaProducto"></select>
-          </div>
-          <div class="field">
-            <label>Cantidad</label>
-            <input type="number" id="ventaCantidad" min="1" value="1"/>
-          </div>
-          <div class="field">
-            <label>Precio</label>
-            <input type="number" id="ventaPrecio" step="0.01" min="0"/>
-          </div>
-          <div class="actions">
-            <button id="agregarCarrito">Agregar</button>
-            <button id="vaciarCarrito" class="secondary">Vaciar</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Carrito</h2>
-          <table id="tablaCarrito">
-            <thead>
-              <tr><th>Producto</th><th>Cant.</th><th>Precio</th><th>Importe</th><th></th></tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot>
-              <tr><td colspan="3" class="right">Subtotal</td><td id="subTotal">$0.00</td><td></td></tr>
-              <tr><td colspan="3" class="right">IVA (<span id="ivaPctLabel">0</span>%)</td><td id="ivaMonto">$0.00</td><td></td></tr>
-              <tr><td colspan="3" class="right total">Total</td><td id="granTotal" class="total">$0.00</td><td></td></tr>
-            </tfoot>
-          </table>
-          <div class="grid two">
-            <div class="card soft">
-              <h3>Pagos (divididos)</h3>
-              <div id="pagosLista"></div>
-              <div class="actions">
-                <button id="addPago" class="secondary">Agregar pago</button>
-                <span class="badge" id="pagadoMonto">$0.00</span>
-              </div>
-            </div>
-            <div class="card soft">
-              <h3>Datos de cliente</h3>
-              <div class="field">
-                <label>Cliente</label>
-                <input id="clienteVenta" placeholder="Nombre o ID"/>
-              </div>
-            </div>
-          </div>
-          <div class="actions">
-            <button id="btnCobrar" class="primary">Cobrar e Imprimir</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Catálogo -->
-    <section id="catalogo" class="section">
-      <div class="grid two">
-        <div class="card">
-          <h2>Agregar / Editar producto</h2>
-          <input type="hidden" id="prodId"/>
-          <div class="field"><label>Nombre</label><input id="prodNombre"/></div>
-          <div class="field"><label>Precio</label><input type="number" step="0.01" id="prodPrecio"/></div>
-          <div class="field"><label>Costo</label><input type="number" step="0.01" id="prodCosto"/></div>
-          <div class="field"><label>Stock inicial</label><input type="number" id="prodStock" value="0"/></div>
-          <div class="field"><label>Categoría</label><input id="prodCategoria" placeholder="Suplementos, Accesorios..."/></div>
-          <div class="field">
-            <label>Foto (opcional)</label>
-            <input type="file" id="prodFoto" accept="image/*"/>
-            <img id="prodPreview" alt="preview" style="max-height:120px;margin-top:8px;display:none;border-radius:10px;border:1px solid #2a2a2a"/>
-          </div>
-          <div class="actions">
-            <button id="btnGuardarProd" class="primary">Guardar</button>
-            <button id="btnNuevoProd" class="secondary">Nuevo</button>
-          </div>
-        </div>
-        <div class="card">
-          <h2>Productos</h2>
-          <table id="tablaProductos">
-            <thead><tr><th>Foto</th><th>Nombre</th><th>Precio</th><th>Stock</th><th>Categoría</th><th></th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Inventario -->
-    <section id="inventario" class="section">
-      <div class="card">
-        <h2>Movimientos de inventario</h2>
-        <table id="tablaInventario">
-          <thead><tr><th>Producto</th><th>Stock</th><th>Entrada</th><th>Salida</th><th></th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Historial -->
-    <section id="historial" class="section">
-      <div class="card">
-        <h2>Historial de ventas</h2>
-        <table id="tablaHistorial">
-          <thead>
-            <tr><th>Fecha</th><th>Folio</th><th>Items</th><th>Pagos</th><th>Total</th><th>Ticket</th></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
-
-    <!-- Clientes -->
-    <section id="clientes" class="section">
-      <div class="grid two">
-        <div class="card">
-          <h2>Nuevo cliente</h2>
-          <div class="field"><label>Nombre</label><input id="cliNombre"/></div>
-          <div class="field"><label>Teléfono</label><input id="cliTelefono"/></div>
-          <div class="field"><label>Correo</label><input id="cliCorreo"/></div>
-          <div class="actions"><button id="btnGuardarCliente" class="primary">Guardar</button></div>
-        </div>
-        <div class="card">
-          <h2>Clientes</h2>
-          <input id="buscarCliente" placeholder="Buscar..." />
-          <table id="tablaClientes">
-            <thead><tr><th>Nombre</th><th>Teléfono</th><th>Correo</th></tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- Membresías (Control) -->
-    <section id="membresias" class="section">
-      <div class="grid two">
-        <div class="card">
-          <h2>Nueva membresía</h2>
-          <div class="field"><label>Cliente</label><input id="memCliente"/></div>
-          <div class="field">
-            <label>Tipo</label>
-            <select id="memTipo">
-              <option value="Visita">Visita</option>
-              <option value="Semana">Semana</option>
-              <option value="Mensualidad">Mensualidad</option>
-              <option value="6 meses">6 meses</option>
-              <option value="12 meses">12 meses</option>
-            </select>
-          </div>
-          <div class="actions">
-            <button id="btnCrearMembresia" class="primary">Crear</button>
-          </div>
-        </div>
-
-        <div class="card">
-          <h2>Membresías</h2>
-          <table id="tablaMembresias">
-            <thead><tr><th>Cliente</th><th>Tipo</th><th>Inicio</th><th>Fin</th><th>Estado</th></tr></thead>
-            <tbody></tbody>
-          </table>
-          <small>Colores: <span class="badge" style="background:#12331a;border-color:#144c1f">Activa</span> <span class="badge" style="background:#4a1111;border-color:#6a1616">Vencida</span></small>
-        </div>
-      </div>
-    </section>
-
-    <!-- Cafetería -->
-    <section id="cafeteria" class="section">
-      <div class="card">
-        <h2>Cafetería (beta)</h2>
-        <p>Usa el Catálogo para dar de alta bebidas/combos y véndelos desde la sección <strong>Ventas</strong>. Aquí más adelante agregamos tickets especiales y recetas.</p>
-      </div>
-    </section>
-
-    <!-- Admin -->
-    <section id="admin" class="section">
-      <div class="grid two">
-        <div class="card">
-          <h2>Configuración</h2>
-          <div class="field"><label>IVA (%)</label><input type="number" id="cfgIVA" value="0"/></div>
-          <div class="actions">
-            <button id="btnGuardarCfg" class="primary">Guardar config</button>
-          </div>
-        </div>
-        <div class="card">
-          <h2>Respaldo de datos</h2>
-          <div class="actions">
-            <button id="btnExportar" class="primary">Exportar JSON</button>
-            <label class="btn-file secondary">
-              Importar JSON
-              <input type="file" id="inputImportar" accept="application/json" hidden/>
-            </label>
-            <button id="btnBorrarTodo" class="danger">Borrar todo</button>
-          </div>
-          <small>Los datos se guardan en tu navegador con <code>localStorage</code>.</small>
-        </div>
+    <section id="view-dashboard" class="view">Dashboard aquí</section>
+    <section id="view-ventas" class="view hidden">Ventas aquí</section>
+    <section id="view-inventario" class="view hidden">Inventario aquí</section>
+    <section id="view-clientes" class="view hidden">Clientes aquí</section>
+    <section id="view-membresias" class="view hidden">Membresías aquí</section>
+    <section id="view-cafeteria" class="view hidden">Cafetería aquí</section>
+    <section id="view-historial" class="view hidden">Historial aquí</section>
+    <section id="view-config" class="view hidden">Configuración aquí</section>
+    <section id="view-ticket" class="view hidden">
+      <div class="ticket">
+        <h3>DINAMITA GYM</h3>
+        <p>Vista previa de ticket 58mm</p>
       </div>
     </section>
   </main>
-
-  <script src="app.js"></script>
+</div>
+<script src="app.js"></script>
 </body>
 </html>
